@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Promise Day 💙</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to top, #141e30, #243b55, #ff9966);
+  height:100vh;
+}
+
+/* Title */
+h1{
+  position:absolute;
+  top:20px;
+  width:100%;
+  text-align:center;
+  color:white;
+  letter-spacing:2px;
+}
+
+/* Ground */
+.ground{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:180px;
+  background:#111;
+  z-index:1;
+}
+
+/* People */
+.person{
+  position:absolute;
+  bottom:180px;
+  width:70px;
+  height:180px;
+  background:black;
+  border-radius:40px;
+  z-index:2;
+  transition:all 3s ease;
+}
+
+.head{
+  width:70px;
+  height:70px;
+  background:black;
+  border-radius:50%;
+  position:absolute;
+  top:-50px;
+}
+
+.arm{
+  width:70px;
+  height:15px;
+  background:black;
+  position:absolute;
+  top:60px;
+  transition:all 3s ease;
+}
+
+/* Boy */
+#boy{
+  left:15%;
+}
+#boy .arm{
+  right:-60px;
+  transform-origin:left center;
+}
+
+/* Girl */
+#girl{
+  right:15%;
+}
+#girl .arm{
+  left:-60px;
+  transform-origin:right center;
+}
+
+/* Button */
+button{
+  position:absolute;
+  bottom:70px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:15px 40px;
+  border:none;
+  border-radius:30px;
+  background:#ffd700;
+  font-size:18px;
+  cursor:pointer;
+  z-index:10;
+  box-shadow:0 0 20px rgba(255,215,0,0.7);
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateX(-50%) scale(1.1);
+}
+
+/* Glow Effect */
+.hold-glow{
+  box-shadow:0 0 40px pink;
+}
+
+/* Promise Text */
+#promiseText{
+  position:absolute;
+  bottom:260px;
+  width:100%;
+  text-align:center;
+  color:white;
+  font-size:20px;
+  opacity:0;
+  transition:opacity 3s ease;
+  padding:0 20px;
+}
+
+/* Real Clouds */
+.cloud{
+  position:absolute;
+  width:200px;
+  height:60px;
+  background:white;
+  border-radius:50px;
+  opacity:0.9;
+  animation:moveCloud 60s linear infinite;
+}
+
+.cloud::before,
+.cloud::after{
+  content:"";
+  position:absolute;
+  background:white;
+  border-radius:50%;
+}
+
+.cloud::before{
+  width:90px;
+  height:90px;
+  top:-40px;
+  left:30px;
+}
+
+.cloud::after{
+  width:110px;
+  height:110px;
+  top:-60px;
+  right:30px;
+}
+
+@keyframes moveCloud{
+  from{ left:-250px; }
+  to{ left:110%; }
+}
+
+/* Floating Hearts */
+.heart{
+  position:absolute;
+  color:pink;
+  font-size:20px;
+  animation:floatUp 5s linear infinite;
+  opacity:0;
+}
+
+@keyframes floatUp{
+  0%{ transform:translateY(0); opacity:1; }
+  100%{ transform:translateY(-300px); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Promise Day 💙</h1>
+
+<!-- Clouds -->
+<div class="cloud" style="top:80px;"></div>
+<div class="cloud" style="top:140px; animation-duration:90s;"></div>
+
+<!-- Boy -->
+<div id="boy" class="person">
+  <div class="head"></div>
+  <div class="arm" id="boyArm"></div>
+</div>
+
+<!-- Girl -->
+<div id="girl" class="person">
+  <div class="head"></div>
+  <div class="arm" id="girlArm"></div>
+</div>
+
+<!-- Promise Text -->
+<div id="promiseText">
+In this lifetime and beyond,<br><br>
+I promise to stand beside you,<br>
+to protect your smile,<br>
+to respect your heart,<br>
+to love you deeper every day,<br><br>
+No matter what happens…<br>
+My hand will always search for yours. 💖
+</div>
+
+<button onclick="holdHands()">Hold My Hand</button>
+
+<div class="ground"></div>
+
+<script>
+function holdHands(){
+
+  // Move closer
+  document.getElementById("boy").style.left="40%";
+  document.getElementById("girl").style.right="40%";
+
+  // Rotate arms
+  document.getElementById("boyArm").style.transform="rotate(25deg)";
+  document.getElementById("girlArm").style.transform="rotate(-25deg)";
+
+  // Glow
+  document.getElementById("boy").classList.add("hold-glow");
+  document.getElementById("girl").classList.add("hold-glow");
+
+  // Show text
+  document.getElementById("promiseText").style.opacity="1";
+
+  // Create floating hearts
+  for(let i=0;i<20;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.bottom="180px";
+    heart.style.animationDelay=Math.random()*5+"s";
+    document.body.appendChild(heart);
+  }
+}
+</script>
+
+</body>
+</html>
